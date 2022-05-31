@@ -4,50 +4,38 @@ using UnityEngine;
 
 public class AIPatrol : MonoBehaviour
 {
-    [HideInInspector]
-    public bool mustPatrol;
-    private bool mustTurn;
-    public Transform groundCheckPos;
-    public float walkSpeed;
-    public LayerMask Ground;
+    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] Rigidbody2D enemyRigidbody;
+    [SerializeField] BoxCollider2D groundDetectionCollider;
 
-    public Rigidbody2D rb;
-    // Start is called before the first frame update
     void Start()
     {
-        mustPatrol = true;
+        enemyRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void fixedUpdate()
-    {
-        if (mustPatrol)
-        {
-            mustTurn = !Physics2D.OverlapCircle(groundCheckPos.position, 0.1f, Ground);
-        }
-    }
-    // Update is called once per frame
+
     void Update()
     {
-        if (mustPatrol)
+        if (isFacingRight())
         {
-            Patrol();
+            //move right
+            enemyRigidbody.velocity = new Vector2(moveSpeed, 0f);
+        }
+        else
+        {
+            //move left
+            enemyRigidbody.velocity = new Vector2(-moveSpeed, 0f);
         }
     }
 
-    void Patrol() //Bewegt den Enemy in Richtung Vector.Y
+    private bool isFacingRight()
     {
-        if (mustTurn)
-        {
-            Flip();
-        }
-        rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        return transform.localScale.x > Mathf.Epsilon; // Epsilon schau nach einem sehr kleinen float Wert (0.000001f)
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Dreht den Enemy
+        transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), transform.localScale.y);
     }
 
-    void Flip() //Dreht den Enemy in der Laufrichtung um
-    {
-        mustPatrol = false;
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-        walkSpeed *= -1;
-        mustPatrol = true;
-    }
 }

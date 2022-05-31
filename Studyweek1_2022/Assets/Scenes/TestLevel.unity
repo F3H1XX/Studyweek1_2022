@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!50 &317258435 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8679252280018561918, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+  m_PrefabInstance: {fileID: 3588696539040304124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &454426110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3186461248390326021, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
@@ -212,6 +217,27 @@ Transform:
   m_Father: {fileID: 454426110}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1667584676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8472857840579297458, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+  m_PrefabInstance: {fileID: 3588696539040304124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1667584678
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667584676}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &913284776442959748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,6 +359,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1308672196150124970, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308672196150124970, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3588696539028403312, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -343,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3588696539028403312, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.75
+      value: 3.96
       objectReference: {fileID: 0}
     - target: {fileID: 3588696539028403312, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -381,9 +415,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_usb_stick_idle_0
       objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403316, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403317, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_Size.x
+      value: 2.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403317, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403317, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403317, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403317, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403319, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588696539028403319, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4392802499030216802, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
       propertyPath: rb
       value: 
+      objectReference: {fileID: 317258435}
+    - target: {fileID: 4392802499030216802, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
+      propertyPath: moveSpeed
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 4392802499030216802, guid: 0913fc32d1215f14dbad06ced9db5dd5, type: 3}
       propertyPath: walkSpeed
