@@ -8,9 +8,9 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] Rigidbody2D enemyRigidbody;
     [SerializeField] BoxCollider2D groundDetectionCollider;
 
-    void Start()
+    void Start() 
     {
-        enemyRigidbody = GetComponent<Rigidbody2D>();
+        enemyRigidbody = GetComponent<Rigidbody2D>(); // set enemyRidigbody zu Rigidbody2D um mit diesem arbeiten zu können
     }
 
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3588696539028403317}
   - component: {fileID: 4392802499030216802}
   - component: {fileID: 8679252280018561918}
+  - component: {fileID: 2927894901410547880}
   m_Layer: 0
   m_Name: enemy_usb_stick_idle_0
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1308672196150124970}
+  - {fileID: 5473852862716099163}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,13 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ff019088d58444802449ad607629d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mustPatrol: 0
-  groundCheckPos: {fileID: 1308672196150124970}
-  walkSpeed: 200
-  Ground:
-    serializedVersion: 2
-    m_Bits: 128
-  rb: {fileID: 8679252280018561918}
+  moveSpeed: 1
+  enemyRigidbody: {fileID: 8679252280018561918}
+  groundDetectionCollider: {fileID: 0}
 --- !u!50 &8679252280018561918
 Rigidbody2D:
   serializedVersion: 4
@@ -165,7 +162,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!1 &8472857840579297458
+--- !u!111 &2927894901410547880
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3588696539028403316}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ec313356e938b79449e5f215122783e3, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!1 &7973437564744436288
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,26 +185,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1308672196150124970}
+  - component: {fileID: 5473852862716099163}
+  - component: {fileID: 479967436594351902}
   m_Layer: 0
-  m_Name: CheckCheckPosition
+  m_Name: groundDetectionCollider
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1308672196150124970
+--- !u!4 &5473852862716099163
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8472857840579297458}
+  m_GameObject: {fileID: 7973437564744436288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -2.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.99, y: -2.34, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3588696539028403312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &479967436594351902
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973437564744436288}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
