@@ -18,6 +18,9 @@ public class PlayerBasicMovement : MonoBehaviour
     private float velocityX;
     private float acceleration = 2;
     private float decceleration = 3;
+    private bool groundCheck = false;
+    private bool secondJump = false;
+    [SerializeField] private bool doubleJumpenabled = false;
 
     private void Awake()
     {
@@ -44,7 +47,8 @@ public class PlayerBasicMovement : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, 0.87f) * Mathf.Sign(speedDiff);
 
         playerRB.AddForce(Vector2.right * movement);
-        Debug.Log(movement);
+        
+        
         
         
         
@@ -56,12 +60,31 @@ public class PlayerBasicMovement : MonoBehaviour
         {
             playerRB.gravityScale *= fallingGravityScale;           
         }
+        if(playerRB.velocity.y == 0)
+        {
+            groundCheck = true;           
+        }
     } 
     private void playerJump(InputAction.CallbackContext obj)
     {
-        Debug.Log("I jumped!");       
-        playerRB.AddForce( new Vector2(0, jumpForce), ForceMode2D.Impulse);
-        Debug.Log(moveInput);
+        Debug.Log(groundCheck);
+        if(groundCheck)
+        {          
+            Debug.Log("I jumped!");
+            playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            Debug.Log(moveInput);
+            secondJump = true;
+        }
+        
+        
+        if(doubleJumpenabled && secondJump && !groundCheck)
+        {           
+            Debug.Log("I double jumped!");           
+            playerRB.AddForce(new Vector2(0, jumpForce / 1.5f), ForceMode2D.Impulse);
+            Debug.Log(moveInput);           
+        }
+        groundCheck = false;
+
     }
 
 
