@@ -9,12 +9,12 @@ public class PlayerBasicMovement : MonoBehaviour
     private PlayerMovement_Controls playerControls;
     private InputAction groundMovement;
     private Rigidbody2D playerRB;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpForce = 40;
     private float normalGravityScale = 1.75f;
     [SerializeField] private float fallingGravityScale = 0.4f;
     private float moveInput;
-    [SerializeField] private float runMaxSpeed = 15;
-    [SerializeField] private float jumpHorizontalSpeed = 7;
+    [SerializeField] private float runMaxSpeed = 35;
+    [SerializeField] private float jumpHorizontalSpeed = 20;
     [SerializeField]private float acceleration = 2;
     [SerializeField]private float decceleration = 3;
     private bool groundCheck = false;
