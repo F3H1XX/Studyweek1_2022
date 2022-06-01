@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerBasicMovement : MonoBehaviour
 {
+    #region Variables
     private PlayerMovement_Controls playerControls;
     private InputAction groundMovement;
     private Rigidbody2D playerRB;
@@ -13,14 +14,17 @@ public class PlayerBasicMovement : MonoBehaviour
     private float normalGravityScale = 1.75f;
     [SerializeField] private float fallingGravityScale = 0.4f;
     private float moveInput;
-    [SerializeField] private float runSpeed = 15;
-    private float runMaxSpeed = 40;
-    [SerializeField] private float jumpHorizontalSpeed = 7;
-    [SerializeField] private float acceleration = 2;
-    [SerializeField] private float decceleration = 3;
+    [SerializeField] private float runSpeed = 15f;
+    private float runMaxSpeed = 40f;
+    [SerializeField] private float jumpHorizontalSpeed = 7f;
+    [SerializeField] private float acceleration = 2f;
+    [SerializeField] private float decceleration = 3f;
     private bool groundCheck = false;
     private bool secondJump = false;
+    [SerializeField] private float jumpCutMultiplier = 0.2f;
     [SerializeField] private bool doubleJumpEnabled = false;
+    [SerializeField] private float secondJumpForce = 80;
+    #endregion
 
     private void Awake()
     {
@@ -32,6 +36,7 @@ public class PlayerBasicMovement : MonoBehaviour
     {
         groundMovement.Enable();
         playerControls.Player.Jump.performed += playerJump;
+        playerControls.Player.Jump.canceled += playerJump;
         playerControls.Player.Jump.Enable();
     }
     private void OnDisable()
@@ -40,7 +45,11 @@ public class PlayerBasicMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(playerRB.gravityScale);
+        #region MovementSpeed_Berechnung
+
+        /*Calculates velocity of player until max speed is reached.
+           Movement is more fluent */
+          
         moveInput = groundMovement.ReadValue<float>();
 
         float targetSpeed = moveInput * runSpeed;
@@ -49,9 +58,13 @@ public class PlayerBasicMovement : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, 0.87f) * Mathf.Sign(speedDiff);
 
         playerRB.AddForce(Vector2.right * movement);
+        #endregion
 
 
+        #region GravityFallAdjustment
 
+        //Gravity scales up to make falling more "realistic".
+        //Groundcheck gets updated
         if (playerRB.velocity.y < 0.1f || playerRB.velocity.y != 0)
         {
             playerRB.gravityScale += fallingGravityScale;
@@ -63,23 +76,38 @@ public class PlayerBasicMovement : MonoBehaviour
             playerRB.gravityScale = normalGravityScale;
             runSpeed = runMaxSpeed;
             groundCheck = true;
-        }
-    }
-    private void playerJump(InputAction.CallbackContext obj)
-    {
-        Debug.Log(groundCheck);
-        if (groundCheck)
-        {
-            groundCheck = false;
-            runSpeed = jumpHorizontalSpeed;
-            playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             secondJump = true;
         }
+        #endregion
+    }
 
+    #region JumpMethode
+    private void playerJump(InputAction.CallbackContext obj)
+    {
+        //Groundcheck gets called to prevent infinite jumps.       
+        if (groundCheck && obj.performed)
+        {
+            
+            groundCheck = false;
+            runSpeed = jumpHorizontalSpeed;
+            playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse); 
+            secondJump = true;  
+        }       
+        
+        //The longer the jump button is pressed, the higher the jump.
+        if(obj.canceled)
+        {
+            Debug.Log(obj.phase);
+            playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
+        }
+
+        //Optional DoubleJump (WIP)
         if (doubleJumpEnabled && secondJump && !groundCheck)
         {
-            playerRB.AddForce(new Vector2(0, jumpForce / 1.5f), ForceMode2D.Impulse);
-        }
+            playerRB.AddForce(new Vector2(0, secondJumpForce), ForceMode2D.Impulse);
+            secondJump = false;
+        }       
         groundCheck = false;
     }
+    #endregion
 }

@@ -403,10 +403,12 @@ MonoBehaviour:
   jumpForce: 40
   fallingGravityScale: 0.4
   runSpeed: 15
-  jumpHorizontalSpeed: 7
+  jumpHorizontalSpeed: 9
   acceleration: 2
   decceleration: 3
+  jumpCutMultiplier: 0.2
   doubleJumpEnabled: 0
+  secondJumpForce: 420
 --- !u!1001 &978312554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,7 +502,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.49803925, g: 0.83921576, b: 0.9921569, a: 0}
+  m_BackGroundColor: {r: 0.74509805, g: 0.9803922, b: 0.9490197, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
