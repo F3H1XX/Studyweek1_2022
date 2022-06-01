@@ -476,7 +476,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.49803925, g: 0.83921576, b: 0.9921569, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -824,9 +824,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3186461248390326023, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d11f4725efe2bd747ab75e882298fb73, type: 2}
+    - target: {fileID: 3186461248390326023, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3186461248390326041, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634877314284835084, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: jumpForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634877314284835084, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: runMaxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634877314284835084, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: doubleJumpenabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634877314284835084, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: fallingGravityScale
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634877314284835084, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
+      propertyPath: jumpHorizontalSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 532d2e43fe0813d4abe3221ebd14ce2f, type: 3}
