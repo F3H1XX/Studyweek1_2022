@@ -7,15 +7,16 @@ TagManager:
   - Settings
   - Highscore
   - Main Menu
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Background
+  - Ground
   - 
   - 
   - 
