@@ -4,6 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Settings
+  - Highscore
+  - Main Menu
   - Enemy
   layers:
   - Default
