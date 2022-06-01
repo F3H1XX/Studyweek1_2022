@@ -10,6 +10,8 @@ public class MainMenuController : MonoBehaviour
     private GameObject settings;
     [SerializeField]
     private GameObject mainMenu;
+    [SerializeField] 
+    private GameObject credits;
     [SerializeField]
     private SettingsData settingsdata;
     [SerializeField]
@@ -47,6 +49,12 @@ public class MainMenuController : MonoBehaviour
     public void Highscore()
     {
         
+    }
+
+    public void Credits()
+    {
+        credits.SetActive(true);
+        mainMenu.SetActive(false);
     }
     
     public void ExitGame()
