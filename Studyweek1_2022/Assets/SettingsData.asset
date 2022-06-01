@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SettingsData
   m_EditorClassIdentifier: 
   EnableWallJump: 1
+  EnableDoubleJump: 1
