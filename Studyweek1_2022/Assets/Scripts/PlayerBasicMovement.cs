@@ -16,7 +16,7 @@ public class PlayerBasicMovement : MonoBehaviour
     private float moveInput;
     [SerializeField] private float runSpeed = 15f;
     private float runMaxSpeed = 40f;
-    [SerializeField] private float jumpHorizontalSpeed = 7f;
+    [SerializeField] private float jumpHorizontalSpeed = 9f;
     [SerializeField] private float acceleration = 2f;
     [SerializeField] private float decceleration = 3f;
     private bool groundCheck = false;
