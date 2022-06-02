@@ -37,7 +37,6 @@ public class MainMenuController : MonoBehaviour
     }
     public void PlayGame()
     {
-        Debug.Log("A");
         SceneManager.LoadScene("GameScene");
         SceneManager.UnloadSceneAsync("MainMenu");
     }

@@ -8,6 +8,7 @@ TagManager:
   - Highscore
   - Main Menu
   - Enemy
+  - Coin
   layers:
   - Default
   - TransparentFX
