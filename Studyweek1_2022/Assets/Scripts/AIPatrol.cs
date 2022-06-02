@@ -7,8 +7,10 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] Rigidbody2D enemyRigidbody;
     [SerializeField] BoxCollider2D groundDetectionCollider;
+    [SerializeField] LayerMask player;
+    [SerializeField] Transform playerCheck;
 
-    void Start() 
+    void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>(); // set enemyRidigbody zu Rigidbody2D um mit diesem arbeiten zu können
     }
@@ -26,6 +28,7 @@ public class AIPatrol : MonoBehaviour
             //move left
             enemyRigidbody.velocity = new Vector2(-moveSpeed, 0f);
         }
+        damageCheck();
     }
 
     private bool isFacingRight()
@@ -36,6 +39,17 @@ public class AIPatrol : MonoBehaviour
     {
         //Dreht den Enemy
         transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), transform.localScale.y);
+    }
+
+    public void damageCheck()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerCheck.position, 0.5f, player);
+
+        if (colliders.Length > 0)
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
 }
