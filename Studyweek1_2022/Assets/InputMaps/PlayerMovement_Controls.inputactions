@@ -1,0 +1,76 @@
+{
+    "name": "PlayerMovement_Controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "0068c9a6-ada8-42fc-ae8f-a928d2c3a590",
+            "actions": [
+                {
+                    "name": "GroundMovement",
+                    "type": "Button",
+                    "id": "67284267-8937-4284-a778-54a82a6b1feb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "57e94d42-ba30-4319-b32c-1dee38c012e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c41f6834-fcc6-42be-b7b4-037f366cdd28",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Left/Right_Movement",
+                    "id": "89bb0936-dd11-4da4-95fa-0ef1a4e1974f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GroundMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "81227e00-e29f-4077-94f0-f8b340c88d31",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GroundMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3dc691b1-f41c-4bcf-9621-c5f15f2d87b9",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GroundMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
