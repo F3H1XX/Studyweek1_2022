@@ -19,11 +19,16 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private float jumpHorizontalSpeed = 9f;
     [SerializeField] private float acceleration = 2f;
     [SerializeField] private float decceleration = 3f;
-    private bool groundCheck = false;
+    [SerializeField] private bool groundCheck = false;
     private bool secondJump = false;
     [SerializeField] private float jumpCutMultiplier = 0.2f;
     [SerializeField] private bool doubleJumpEnabled = false;
     [SerializeField] private float secondJumpForce = 80;
+    [SerializeField] Transform groundCheckCollider1;
+    [SerializeField] Transform groundCheckCollider2;
+    [SerializeField] private LayerMask groundLayer;
+    
+    
     #endregion
 
     private void Awake()
@@ -45,6 +50,7 @@ public class PlayerBasicMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        GroundCheck();
         #region MovementSpeed_Berechnung
 
         /*Calculates velocity of player until max speed is reached.
@@ -68,16 +74,9 @@ public class PlayerBasicMovement : MonoBehaviour
         if (playerRB.velocity.y < 0.1f || playerRB.velocity.y != 0)
         {
             playerRB.gravityScale += fallingGravityScale;
-
-            groundCheck = false;
+           
         }
-        if (playerRB.velocity.y == 0)
-        {
-            playerRB.gravityScale = normalGravityScale;
-            runSpeed = runMaxSpeed;
-            groundCheck = true;
-            secondJump = true;
-        }
+        
         #endregion
     }
 
@@ -97,7 +96,6 @@ public class PlayerBasicMovement : MonoBehaviour
         //The longer the jump button is pressed, the higher the jump.
         if(obj.canceled)
         {
-            Debug.Log(obj.phase);
             playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
         }
 
@@ -110,4 +108,24 @@ public class PlayerBasicMovement : MonoBehaviour
         groundCheck = false;
     }
     #endregion
+    public void GroundCheck()
+    {
+        //One Overlap for each leg, so the player doesn't get stuck on ledges
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider1.position, 0.3f, groundLayer);
+        Collider2D[] colliders2 = Physics2D.OverlapCircleAll(groundCheckCollider2.position, 0.3f, groundLayer);
+
+
+        groundCheck = false;
+        //Overlaps check for groundLayer in radius, to see if the palyer touches the ground
+        if (colliders.Length > 0 || colliders2.Length > 0)
+        {
+            Debug.Log(groundCheck);
+            groundCheck = true;
+            playerRB.gravityScale = normalGravityScale;
+            runSpeed = runMaxSpeed;
+            Debug.Log("We hit the ground!");
+
+            secondJump = true;
+        }      
+    }
 }
