@@ -14,7 +14,7 @@ public class PlayerBasicMovement : MonoBehaviour
     private float normalGravityScale = 1.75f;
     [SerializeField] private float fallingGravityScale = 0.4f;
     private float moveInput;
-    [SerializeField] private float runSpeed = 15f;
+    [SerializeField] private float runSpeed = 35f;
     private float runMaxSpeed = 40f;
     [SerializeField] private float jumpHorizontalSpeed = 9f;
     [SerializeField] private float acceleration = 2f;
