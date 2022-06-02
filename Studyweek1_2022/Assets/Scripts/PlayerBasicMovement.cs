@@ -73,8 +73,7 @@ public class PlayerBasicMovement : MonoBehaviour
         //Groundcheck gets updated
         if (playerRB.velocity.y < 0.1f || playerRB.velocity.y != 0)
         {
-            playerRB.gravityScale += fallingGravityScale;
-           
+            playerRB.gravityScale += fallingGravityScale;           
         }
         
         #endregion
@@ -119,12 +118,9 @@ public class PlayerBasicMovement : MonoBehaviour
         //Overlaps check for groundLayer in radius, to see if the palyer touches the ground
         if (colliders.Length > 0 || colliders2.Length > 0)
         {
-            Debug.Log(groundCheck);
             groundCheck = true;
             playerRB.gravityScale = normalGravityScale;
-            runSpeed = runMaxSpeed;
-            Debug.Log("We hit the ground!");
-
+            runSpeed = runMaxSpeed;           
             secondJump = true;
         }      
     }
