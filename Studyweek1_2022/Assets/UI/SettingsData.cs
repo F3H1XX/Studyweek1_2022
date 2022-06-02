@@ -7,5 +7,6 @@ using UnityEngine;
 public class SettingsData : ScriptableObject
 {
     public bool EnableWallJump;
-    public bool EnableDoubleJump;
+    public bool EnableDoubleJump = true;
+     
 }

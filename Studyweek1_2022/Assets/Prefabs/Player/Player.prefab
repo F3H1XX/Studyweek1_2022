@@ -383,21 +383,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbb2f79340c3ba48864f9109732cb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 40
-  fallingGravityScale: 0.4
-  runSpeed: 15
-  jumpHorizontalSpeed: 7
-  acceleration: 2
+  JumpForce: 40
+  FallingGravityScale: 0.4
+  RunSpeed: 15
+  JumpHorizontalSpeed: 9
+  Acceleration: 2
   decceleration: 3
-  groundCheck: 0
-  jumpCutMultiplier: 0.2
-  doubleJumpEnabled: 1
-  secondJumpForce: 80
-  groundCheckCollider1: {fileID: 2142349865185735193}
-  groundCheckCollider2: {fileID: 2142349866106486706}
-  groundLayer:
+  GroundCheck: 0
+  JumpCutMultiplier: 0.2
+  EnableDoubleJump: 0
+  SecondJumpForce: 80
+  GroundCheckCollider1: {fileID: 2142349865185735193}
+  GroundCheckCollider2: {fileID: 2142349866106486706}
+  GroundLayer:
     serializedVersion: 2
     m_Bits: 128
+  GameSettings: {fileID: 11400000, guid: 07651e17a516173408a458b1b477c147, type: 2}
 --- !u!50 &2142349866810609996
 Rigidbody2D:
   serializedVersion: 4
