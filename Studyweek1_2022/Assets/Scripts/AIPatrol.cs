@@ -7,12 +7,12 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] Rigidbody2D enemyRigidbody;
     [SerializeField] BoxCollider2D groundDetectionCollider;
-    [SerializeField] LayerMask player;
+    [SerializeField] LayerMask Player;
     [SerializeField] Transform playerCheck;
 
     void Start()
     {
-        enemyRigidbody = GetComponent<Rigidbody2D>(); // set enemyRidigbody zu Rigidbody2D um mit diesem arbeiten zu können
+        enemyRigidbody = GetComponent<Rigidbody2D>(); // set enemyRidigbody zu Rigidbody2D um mit diesem arbeiten zu kï¿½nnen
     }
 
 
@@ -33,7 +33,7 @@ public class AIPatrol : MonoBehaviour
 
     private bool isFacingRight()
     {
-        return transform.localScale.x > Mathf.Epsilon; // Epsilon schau nach einem sehr kleinen float Wert (0.000001f)
+        return transform.localScale.x > Mathf.Epsilon; // Epsilon schaut nach einem sehr kleinen float Wert (0.000001f)
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -43,7 +43,7 @@ public class AIPatrol : MonoBehaviour
 
     public void damageCheck()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerCheck.position, 0.5f, player);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerCheck.position, 0.5f, Player);
 
         if (colliders.Length > 0)
         {

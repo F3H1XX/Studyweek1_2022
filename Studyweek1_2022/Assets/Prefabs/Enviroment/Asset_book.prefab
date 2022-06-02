@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7400057076465578941}
   - component: {fileID: 5073823795618568378}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Asset_book (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1297850563
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d24fa222e9a4e2543a3aed368367f42b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6783094330869355280}
   - component: {fileID: 1852039536345934740}
-  m_Layer: 6
+  - component: {fileID: 4798924697504181767}
+  m_Layer: 7
   m_Name: Asset_book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +157,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1297850563
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d24fa222e9a4e2543a3aed368367f42b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -169,3 +170,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &4798924697504181767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573266507569211168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3702698, y: 10.130077, z: 0.2}
+  m_Center: {x: -0.02330017, y: 2.5050392, z: 0}
