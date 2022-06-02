@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ public class MainMenuController : MonoBehaviour
     private GameObject mainMenu;
     [SerializeField] 
     private GameObject credits;
+    [SerializeField] 
+    private GameObject gameMenu;
     public void SetWallJumpValue()  
     {
         settingsdata.EnableWallJump = WallJumpToggle.isOn;
@@ -32,9 +35,10 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    public void PlayGame()  
+    public void PlayGame()
     {
         SceneManager.LoadScene("GameScene");
+        SceneManager.UnloadSceneAsync("MainMenu");
     }
     public void Settings()  
     {
@@ -52,5 +56,10 @@ public class MainMenuController : MonoBehaviour
     public void ExitGame()  
     {
         Application.Quit();
+    }
+
+    public void GameMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
