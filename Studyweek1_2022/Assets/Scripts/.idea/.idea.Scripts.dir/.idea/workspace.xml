@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2ce8673-1e34-4f36-b79c-ba3375fe66bc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01_Controller.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01_Controller.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01_Idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01_Idle.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01_walk.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01_walk.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/enemy_usb_stick.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/enemy_usb_stick.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/enemy_usb_stick_idle_0.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/enemy_usb_stick_idle_0.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/enemy_usb_stick_idle_0.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/enemy_usb_stick_idle_0.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Enemy/Enemy_01/AnimController_UsbStick.controller" beforeDir="false" afterPath="$PROJECT_DIR$/../Charakter/Enemy/Enemy_01/AnimController_UsbStick.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01/enemy_usb_stick_idle_0.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01/enemy_usb_stick_idle_0.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy02/enemy_usb_stick_idle_0.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPatrol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AIPatrol.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,19 +26,25 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="d2ce8673-1e34-4f36-b79c-ba3375fe66bc" name="Changes" comment="" />
       <created>1654170291042</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1654170291042</updated>
       <workItem from="1654170296092" duration="13000" />
+      <workItem from="1654251521973" duration="1999000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
