@@ -21,7 +21,7 @@ public class Killzone : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

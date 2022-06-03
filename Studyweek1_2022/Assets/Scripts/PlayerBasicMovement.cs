@@ -36,11 +36,12 @@ public class PlayerBasicMovement : MonoBehaviour
         
         //EnableDoubleJump = GameSettings.EnableDoubleJump; 
         _playerControls = new PlayerMovement_Controls();
-        _playerRb = GetComponent<Rigidbody2D>();
+        
         _groundMovement = _playerControls.Player.GroundMovement;
     }
     private void OnEnable()
     {
+        _playerRb = GetComponent<Rigidbody2D>();
         _groundMovement.Enable();
         _playerControls.Player.Jump.performed += playerJump;
         _playerControls.Player.Jump.canceled += playerJump;
@@ -91,8 +92,9 @@ public class PlayerBasicMovement : MonoBehaviour
             GroundCheck = false;
             RunSpeed = JumpHorizontalSpeed;
             _playerRb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
-            StartCoroutine(StartCooldown());
+            
         }
+        StartCoroutine(StartCooldown());
 
         //The longer the jump button is pressed, the higher the jump.
         if (obj.canceled && _playerRb.velocity.y > 0)
