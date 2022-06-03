@@ -2,16 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2ce8673-1e34-4f36-b79c-ba3375fe66bc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Charakter/Enemy/Enemy_01/AnimController_UsbStick.controller" beforeDir="false" afterPath="$PROJECT_DIR$/../Charakter/Enemy/Enemy_01/AnimController_UsbStick.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01/enemy_usb_stick_idle_0.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy01/enemy_usb_stick_idle_0.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Prefabs/Enemy/Enemy02/enemy_usb_stick_idle_0.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scripts.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPatrol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AIPatrol.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing_original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Charakter/Player/character_standing_original.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Prefabs/Player/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Prefabs/Player/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayerBasicMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerBasicMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Killzone.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlayerBasicMovement.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -22,14 +31,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,6 +49,7 @@
       <updated>1654170291042</updated>
       <workItem from="1654170296092" duration="13000" />
       <workItem from="1654251521973" duration="1999000" />
+      <workItem from="1654255756590" duration="730000" />
     </task>
     <servers />
   </component>
