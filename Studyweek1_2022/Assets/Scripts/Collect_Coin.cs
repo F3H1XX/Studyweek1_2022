@@ -22,16 +22,17 @@ public class Collect_Coin : MonoBehaviour
         if (collision.CompareTag("Coin"))
         {
             collision.gameObject.SetActive(false);
-            StartCoroutine(CoinCooldown());
+            _UICoinCounter.CoinCounter++;
+           // StartCoroutine(CoinCooldown());
             
             Debug.Log($"Coins: { _UICoinCounter.CoinCounter}");
             
         }
     }
 
-    public IEnumerator CoinCooldown()
+   /* public IEnumerator CoinCooldown()
     {
         _UICoinCounter.CoinCounter++;
         yield return new WaitForSeconds(0.1f);
-    }
+    } */
 }
