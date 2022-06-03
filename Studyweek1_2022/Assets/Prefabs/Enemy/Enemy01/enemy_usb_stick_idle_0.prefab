@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 488425090064092860}
   - component: {fileID: 863845519673936555}
   - component: {fileID: 5726403358858662327}
-  - component: {fileID: 2282015026281607777}
   m_Layer: 8
   m_Name: enemy_usb_stick_idle_0
   m_TagString: Untagged
@@ -168,21 +167,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!111 &2282015026281607777
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488425090064092861}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 9d797de68a87f5d4f8114a2035c12dda, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &2885380482367460141
 GameObject:
   m_ObjectHideFlags: 0
