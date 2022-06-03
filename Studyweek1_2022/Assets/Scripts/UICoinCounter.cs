@@ -1,10 +1,8 @@
-﻿
-
-
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "UICoinCounter", menuName = "SizeRumble/UICoinCounter")]
 public class UICoinCounter : ScriptableObject
 {
-    public int CoinCounter = Collect_Coin.coinCounter ;
+    public int CoinCounter = 0;
 }

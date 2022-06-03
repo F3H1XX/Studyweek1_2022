@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2142349866810609984}
+  m_Father: {fileID: 3451858898525003097}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142349866106486717
@@ -59,7 +59,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2142349866810609984}
+  m_Father: {fileID: 3451858898525003097}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142349866810610036
@@ -70,13 +70,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2142349866810609984}
+  - component: {fileID: 3451858898525003097}
   - component: {fileID: 2142349866810609987}
   - component: {fileID: 2142349866810609986}
   - component: {fileID: 2142349866810609997}
   - component: {fileID: 2142349866810609996}
   - component: {fileID: 2142349866810609998}
   - component: {fileID: 127358955440430945}
+  - component: {fileID: 848500953460479330}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -84,15 +85,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2142349866810609984
-Transform:
+--- !u!224 &3451858898525003097
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142349866810610036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.67, y: 23.670008, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -101,6 +102,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 6.6265335, y: 14.8}
+  m_SizeDelta: {x: 5.12, y: 10.24}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2142349866810609987
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -391,7 +397,6 @@ MonoBehaviour:
   decceleration: 3
   GroundCheck: 0
   JumpCutMultiplier: 0.2
-  EnableDoubleJump: 0
   SecondJumpForce: 80
   GroundCheckCollider1: {fileID: 2142349865185735193}
   GroundCheckCollider2: {fileID: 2142349866106486706}
@@ -458,3 +463,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fe0830f9a014643beddfe241f78c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UICoinCounter: {fileID: 11400000, guid: 84a205d6e25d4c44fa1566e59b4ef2a0, type: 2}
+--- !u!222 &848500953460479330
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142349866810610036}
+  m_CullTransparentMesh: 1
