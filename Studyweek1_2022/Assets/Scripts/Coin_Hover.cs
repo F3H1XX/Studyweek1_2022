@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin_Hover : MonoBehaviour
 {
+    private Rigidbody2D coinRB;
     private Vector2 startPosition;
     private void Awake()
     {
