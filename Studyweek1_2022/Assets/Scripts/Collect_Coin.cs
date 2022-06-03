@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collect_Coin : MonoBehaviour
 {
-    private int coinCounter;
+    public static int coinCounter;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Coin"))
