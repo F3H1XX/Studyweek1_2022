@@ -246,7 +246,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Michael Krysciak, Tim Sch\xFCtthut,Pascal Hermann, Miriam Jungbluth, Paulina   "
+  m_text: "Michael Krysciak, Tim Sch\xFCtthut,Pascal Hermann, Miriam Jungbluth, Paulina
+    Rolbiecka"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4123,7 +4124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1593295158}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1444935903
 GameObject:
@@ -4413,9 +4414,9 @@ RectTransform:
   - {fileID: 577658919}
   - {fileID: 1375778854}
   - {fileID: 1650472879}
+  - {fileID: 1403323944}
   - {fileID: 61679627}
   - {fileID: 1711239345}
-  - {fileID: 1403323944}
   - {fileID: 1929085600}
   - {fileID: 554910510}
   - {fileID: 1029946188}
