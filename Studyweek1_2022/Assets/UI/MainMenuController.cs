@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,8 +35,9 @@ public class MainMenuController : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("A");
+        //SceneManager.LoadScene("GameScene");
+        //SceneManager.UnloadSceneAsync("MainMenu");
         SceneManager.LoadScene("GameScene");
-        SceneManager.UnloadSceneAsync("MainMenu");
     }
     public void Settings()  
     {

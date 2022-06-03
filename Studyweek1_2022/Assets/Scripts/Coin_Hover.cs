@@ -9,14 +9,11 @@ public class Coin_Hover : MonoBehaviour
     private void Awake()
     {
         startPosition = transform.position;
-        coinRB = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = startPosition + Vector2.down * Mathf.Sin(Time.time);
-        coinRB.AddTorque(1, ForceMode2D.Force);
     }
 }
