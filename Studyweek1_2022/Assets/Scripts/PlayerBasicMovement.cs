@@ -29,7 +29,7 @@ public class PlayerBasicMovement : MonoBehaviour
 
     #endregion
 
-    
+    private Animator _animator;
     //private static SettingsData GameSettings = SettingsData.CreateInstance < "SettingsData" >;
     private void Awake()
     {
@@ -38,7 +38,16 @@ public class PlayerBasicMovement : MonoBehaviour
         _playerControls = new PlayerMovement_Controls();
         
         _groundMovement = _playerControls.Player.GroundMovement;
+
+        _animator = GetComponent<Animator>();
     }
+
+    void Start()
+    {
+        _animator.enabled = true;
+        _animator.SetBool("IsWalking", true);
+    }
+
     private void OnEnable()
     {
         _playerRb = GetComponent<Rigidbody2D>();

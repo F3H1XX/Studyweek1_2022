@@ -10,9 +10,16 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] LayerMask Player;
     [SerializeField] Transform playerCheck;
 
+	Animator _animator;
+	
+
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>(); // set enemyRidigbody zu Rigidbody2D um mit diesem arbeiten zu k�nnen
+
+		_animator = GetComponent<Animator>();
+		_animator.enabled = true;
+		_animator.SetBool("IsWalking", true);
     }
 
 
@@ -47,6 +54,7 @@ public class AIPatrol : MonoBehaviour
 
         if (colliders.Length > 0)
         {
+			_animator.SetTrigger("TakeDamage");
             gameObject.SetActive(false);
         }
 
