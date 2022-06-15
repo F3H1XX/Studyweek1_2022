@@ -393,12 +393,12 @@ MonoBehaviour:
   JumpForce: 40
   FallingGravityScale: 0.4
   RunSpeed: 15
-  JumpHorizontalSpeed: 9
-  Acceleration: 2
-  decceleration: 3
+  JumpHorizontalSpeed: 4
+  Acceleration: 5
+  decceleration: 10
   GroundCheck: 0
   JumpCutMultiplier: 0.2
-  SecondJumpForce: 80
+  SecondJumpForce: 40
   GroundCheckCollider1: {fileID: 2142349865185735193}
   GroundCheckCollider2: {fileID: 2142349866106486706}
   GroundLayer:
@@ -421,7 +421,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d11f4725efe2bd747ab75e882298fb73, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -464,6 +464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fe0830f9a014643beddfe241f78c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinCountText: {fileID: 0}
+  _UICoinCounter: {fileID: 0}
 --- !u!114 &2673696687588088933
 MonoBehaviour:
   m_ObjectHideFlags: 0
