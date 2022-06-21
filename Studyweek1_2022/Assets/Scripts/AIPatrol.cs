@@ -7,15 +7,15 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] Rigidbody2D enemyRigidbody;
     [SerializeField] BoxCollider2D groundDetectionCollider;
-    [SerializeField] GameObject headHitbox;      
-	Animator _animator;
+    [SerializeField] GameObject player;
+    Animator _animator;
+    bool isDying = false;
 	
 
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>(); // set enemyRidigbody zu Rigidbody2D um mit diesem arbeiten zu k�nnen
-
-		_animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
 		_animator.enabled = true;
 		_animator.SetBool("IsWalking", true);
     }
@@ -46,17 +46,20 @@ public class AIPatrol : MonoBehaviour
         transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), transform.localScale.y);
     }
     public IEnumerator DeathAnimationCooldownEnemy()
-    {
-      yield return new WaitForSeconds(1.2f);
+    { 
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !isDying)
         {
+            moveSpeed = 0f;
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            isDying = true;
             transform.gameObject.tag = "Untagged";
             _animator.SetBool("Die", true);
-            DeathAnimationCooldownEnemy();
-            gameObject.SetActive(false);
+            StartCoroutine("DeathAnimationCooldownEnemy");            
         }
     }
 }
