@@ -164,17 +164,17 @@ public class PlayerBasicMovement : MonoBehaviour
  // }
     public void AnimatorStates()
     {
-        if (GroundCheck == false)
+        if (!groundCheck)
         {
             _animator.SetBool("IsWalking", false);
             _animator.SetBool("IsJumping", true);
         }
-        else if (GroundCheck == true && _playerRb.velocity.x == 0 || _playerRb.velocity.x <= 2.04f && _playerRb.velocity.x >= -2.04f)
+        else if (groundCheck && _playerRb.velocity.x == 0 || _playerRb.velocity.x <= 2.04f && _playerRb.velocity.x >= -2.04f)
          {
             _animator.SetBool("IsWalking", false);
             _animator.SetBool("IsJumping", false);
          }
-         else if(GroundCheck == true && _playerRb.velocity.x != Mathf.Epsilon)
+         else if(groundCheck && _playerRb.velocity.x != Mathf.Epsilon)
          {
             _animator.SetBool("IsWalking", true);
             _animator.SetBool("IsJumping", false);

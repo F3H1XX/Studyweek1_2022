@@ -171,21 +171,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbb2f79340c3ba48864f9109732cb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 40
-  FallingGravityScale: 0.4
-  RunSpeed: 15
-  JumpHorizontalSpeed: 4
-  Acceleration: 5
-  decceleration: 10
-  GroundCheck: 0
-  JumpCutMultiplier: 0.2
-  SecondJumpForce: 40
-  GroundCheckCollider1: {fileID: 2142349865185735193}
-  GroundCheckCollider2: {fileID: 2142349866106486706}
-  GroundLayer:
+  jumpForce: 40
+  fallingGravityScale: 0.4
+  runSpeed: 15
+  jumpHorizontalSpeed: 9
+  acceleration: 4
+  deceleration: 7
+  groundCheck: 0
+  jumpCutMultiplier: 0.2
+  gameSettings: {fileID: 0}
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 128
-  GameSettings: {fileID: 11400000, guid: 07651e17a516173408a458b1b477c147, type: 2}
+    m_Bits: 0
+  groundCheckCollider2: {fileID: 0}
+  groundCheckCollider1: {fileID: 0}
+  secondJumpForce: 80
 --- !u!50 &2142349866810609996
 Rigidbody2D:
   serializedVersion: 4
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinCountText: {fileID: 0}
-  _UICoinCounter: {fileID: 0}
+  _UICoinCounter: {fileID: 11400000, guid: 84a205d6e25d4c44fa1566e59b4ef2a0, type: 2}
 --- !u!114 &2673696687588088933
 MonoBehaviour:
   m_ObjectHideFlags: 0
