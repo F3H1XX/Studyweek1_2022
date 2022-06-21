@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerBasicMovement : MonoBehaviour
 {
     #region Variables
+
     private AudioSource _playerJumpSound;
     private AudioSource _playerWalkSound;
     private PlayerMovement_Controls _playerControls;
@@ -21,7 +22,9 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private float deceleration = 7f;
     [SerializeField] private bool groundCheck = false;
     private bool _secondJump = false;
+
     [SerializeField] private float jumpCutMultiplier = 0.2f;
+
     //[SerializeField] private bool EnableDoubleJump = false;
     public SettingsData gameSettings;
     [SerializeField] private LayerMask groundLayer;
@@ -32,13 +35,13 @@ public class PlayerBasicMovement : MonoBehaviour
     #endregion
 
     private Animator _animator;
+
     //private static SettingsData GameSettings = SettingsData.CreateInstance < "SettingsData" >;
     private void Awake()
     {
-        
         //EnableDoubleJump = GameSettings.EnableDoubleJump; 
         _playerControls = new PlayerMovement_Controls();
-        
+
         _groundMovement = _playerControls.Player.GroundMovement;
 
         _animator = GetComponent<Animator>();
@@ -61,25 +64,29 @@ public class PlayerBasicMovement : MonoBehaviour
         _playerControls.Player.Jump.canceled += PlayerJump;
         _playerControls.Player.Jump.Enable();
     }
+
     private void OnDisable()
     {
         _groundMovement.Disable();
     }
+
     private void FixedUpdate()
     {
         GroundCheck();
+
         #region MovementSpeed_Berechnung
-            
-        if(_groundMovement.ReadValue<float>() < 0)
-        {
-            transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
-        }
-        if(_groundMovement.ReadValue<float>() > 0)
+
+        if (_groundMovement.ReadValue<float>() < 0)
         {
             transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
         }
 
-  
+        if (_groundMovement.ReadValue<float>() > 0)
+        {
+            transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
+        }
+
+
         _moveInput = _groundMovement.ReadValue<float>();
 
         float targetSpeed = _moveInput * runSpeed;
@@ -88,7 +95,9 @@ public class PlayerBasicMovement : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, 0.87f) * Mathf.Sign(speedDiff);
 
         _playerRb.AddForce(Vector2.right * movement);
+
         #endregion
+
         AnimatorStates();
 
         #region GravityFallAdjustment
@@ -104,6 +113,7 @@ public class PlayerBasicMovement : MonoBehaviour
     }
 
     #region JumpMethode
+
     private void PlayerJump(InputAction.CallbackContext obj)
     {
         //Groundcheck gets called to prevent infinite jumps.       
@@ -115,14 +125,14 @@ public class PlayerBasicMovement : MonoBehaviour
             _playerRb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             StartCoroutine(StartCooldown());
         }
-        
+
 
         //The longer the jump button is pressed, the higher the jump.
         if (obj.canceled && _playerRb.velocity.y > 0)
         {
             _playerRb.AddForce(Vector2.down * _playerRb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
         }
-        
+
         //Optional DoubleJump (WIP)
         if (gameSettings.enableDoubleJump && _secondJump && !groundCheck && obj.performed)
         {
@@ -130,11 +140,14 @@ public class PlayerBasicMovement : MonoBehaviour
             _playerRb.AddForce(new Vector2(0, secondJumpForce), ForceMode2D.Impulse);
             _secondJump = false;
         }
+
         groundCheck = false;
     }
+
     #endregion
 
     #region GroundCheck
+
     public void GroundCheck()
     {
         //One Overlap for each leg, so the player doesn't get stuck on ledges
@@ -151,17 +164,20 @@ public class PlayerBasicMovement : MonoBehaviour
             _secondJump = false;
         }
     }
+
     #endregion
+
     //Cooldown to prevent jump and second jump to trigger simultaneously
     public IEnumerator StartCooldown()
     {
         yield return new WaitForSeconds(0.1f);
         _secondJump = true;
     }
- // public IEnumerator DeathAnimationCooldownEnemy()
- // {
- //     yield return new WaitForSeconds(1.2f);
- // }
+
+    // public IEnumerator DeathAnimationCooldownEnemy()
+    // {
+    //     yield return new WaitForSeconds(1.2f);
+    // }
     public void AnimatorStates()
     {
         if (!groundCheck)
@@ -169,24 +185,25 @@ public class PlayerBasicMovement : MonoBehaviour
             _animator.SetBool("IsWalking", false);
             _animator.SetBool("IsJumping", true);
         }
-        else if (groundCheck && _playerRb.velocity.x == 0 || _playerRb.velocity.x <= 2.04f && _playerRb.velocity.x >= -2.04f)
-         {
+        else if (groundCheck && _playerRb.velocity.x == 0 ||
+                 _playerRb.velocity.x <= 2.04f && _playerRb.velocity.x >= -2.04f)
+        {
             _animator.SetBool("IsWalking", false);
             _animator.SetBool("IsJumping", false);
-         }
-         else if(groundCheck && _playerRb.velocity.x != Mathf.Epsilon)
-         {
+        }
+        else if (groundCheck && _playerRb.velocity.x != Mathf.Epsilon)
+        {
             _animator.SetBool("IsWalking", true);
             _animator.SetBool("IsJumping", false);
-         }
+        }
     }
-  // private void OnTriggerEnter2D(Collider2D collision)
-  // {
-  //     if (collision.CompareTag("Enemy"))
-  //     {
-  //        _animator.SetBool("Die", true);
-  //        DeathAnimationCooldownEnemy();
-  //        collision.gameObject.SetActive(false);
-  //     }
-  // }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("Enemy"))
+    //     {
+    //        _animator.SetBool("Die", true);
+    //        DeathAnimationCooldownEnemy();
+    //        collision.gameObject.SetActive(false);
+    //     }
+    // }
 }
