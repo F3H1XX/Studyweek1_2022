@@ -23,12 +23,11 @@ public class PlayerBasicMovement : MonoBehaviour
     private bool _secondJump = false;
     [SerializeField] private float jumpCutMultiplier = 0.2f;
     //[SerializeField] private bool EnableDoubleJump = false;
-    GameObject enemy;
-    [SerializeField] private float secondJumpForce = 80;
-    [SerializeField] Transform groundCheckCollider1;
-    [SerializeField] Transform groundCheckCollider2;
-    [SerializeField] private LayerMask groundLayer;
     public SettingsData gameSettings;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] Transform groundCheckCollider2;
+    [SerializeField] Transform groundCheckCollider1;
+    [SerializeField] private float secondJumpForce = 80;
 
     #endregion
 
