@@ -53,9 +53,10 @@ public class AIPatrol : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            transform.gameObject.tag = "Untagged";
             _animator.SetBool("Die", true);
             DeathAnimationCooldownEnemy();
-            collision.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
