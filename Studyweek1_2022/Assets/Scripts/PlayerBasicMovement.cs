@@ -5,28 +5,30 @@ using UnityEngine.InputSystem;
 public class PlayerBasicMovement : MonoBehaviour
 {
     #region Variables
+    private AudioSource _playerJumpSound;
+    private AudioSource _playerWalkSound;
     private PlayerMovement_Controls _playerControls;
     private InputAction _groundMovement;
     private Rigidbody2D _playerRb;
-    [SerializeField] private float JumpForce = 40;
+    [SerializeField] private float jumpForce = 40;
     private float normalGravityScale = 1.75f;
-    [SerializeField] private float FallingGravityScale = 0.4f;
+    [SerializeField] private float fallingGravityScale = 0.4f;
     private float _moveInput;
-    [SerializeField] private float RunSpeed = 15f;
+    [SerializeField] private float runSpeed = 15f;
     private float runMaxSpeed = 40f;
-    [SerializeField] private float JumpHorizontalSpeed = 9f;
-    [SerializeField] private float Acceleration = 2f;
-    [SerializeField] private float decceleration = 3f;
-    [SerializeField] private bool GroundCheck = false;
+    [SerializeField] private float jumpHorizontalSpeed = 9f;
+    [SerializeField] private float acceleration = 2f;
+    [SerializeField] private float deceleration = 3f;
+    [SerializeField] private bool groundCheck = false;
     private bool _secondJump = false;
-    [SerializeField] private float JumpCutMultiplier = 0.2f;
+    [SerializeField] private float jumpCutMultiplier = 0.2f;
     //[SerializeField] private bool EnableDoubleJump = false;
-    [SerializeField] private float SecondJumpForce = 80;
-    [SerializeField] Transform GroundCheckCollider1;
-    [SerializeField] Transform GroundCheckCollider2;
-    [SerializeField] private LayerMask GroundLayer;
-    public SettingsData GameSettings;
     GameObject enemy;
+    [SerializeField] private float secondJumpForce = 80;
+    [SerializeField] Transform groundCheckCollider1;
+    [SerializeField] Transform groundCheckCollider2;
+    [SerializeField] private LayerMask groundLayer;
+    public SettingsData gameSettings;
 
     #endregion
 
@@ -46,15 +48,18 @@ public class PlayerBasicMovement : MonoBehaviour
     void Start()
     {
         _animator.enabled = true;
-       // _animator.SetBool("IsWalking", true);
+        _animator.SetBool("IsWalking", true);
+        _playerJumpSound = GetComponent<AudioSource>();
+        _playerWalkSound = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
     {
+        //_playerWalkSound.Play();
         _playerRb = GetComponent<Rigidbody2D>();
         _groundMovement.Enable();
-        _playerControls.Player.Jump.performed += playerJump;
-        _playerControls.Player.Jump.canceled += playerJump;
+        _playerControls.Player.Jump.performed += PlayerJump;
+        _playerControls.Player.Jump.canceled += PlayerJump;
         _playerControls.Player.Jump.Enable();
     }
     private void OnDisable()
@@ -63,7 +68,7 @@ public class PlayerBasicMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        groundCheck();
+        GroundCheck();
         #region MovementSpeed_Berechnung
             
         if(_groundMovement.ReadValue<float>() < 0)
@@ -78,9 +83,9 @@ public class PlayerBasicMovement : MonoBehaviour
   
         _moveInput = _groundMovement.ReadValue<float>();
 
-        float targetSpeed = _moveInput * RunSpeed;
+        float targetSpeed = _moveInput * runSpeed;
         float speedDiff = targetSpeed - _playerRb.velocity.x;
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Acceleration : decceleration;
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, 0.87f) * Mathf.Sign(speedDiff);
 
         _playerRb.AddForce(Vector2.right * movement);
@@ -93,21 +98,22 @@ public class PlayerBasicMovement : MonoBehaviour
         //Groundcheck gets updated
         if (_playerRb.velocity.y < 0.1f || _playerRb.velocity.y != 0)
         {
-            _playerRb.gravityScale += FallingGravityScale;
+            _playerRb.gravityScale += fallingGravityScale;
         }
 
         #endregion
     }
 
     #region JumpMethode
-    private void playerJump(InputAction.CallbackContext obj)
+    private void PlayerJump(InputAction.CallbackContext obj)
     {
         //Groundcheck gets called to prevent infinite jumps.       
-        if (GroundCheck && obj.performed)
+        if (groundCheck && obj.performed)
         {
-            GroundCheck = false;
-            RunSpeed = JumpHorizontalSpeed;
-            _playerRb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);     
+            _playerJumpSound.Play();
+            groundCheck = false;
+            runSpeed = jumpHorizontalSpeed;
+            _playerRb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             StartCoroutine(StartCooldown());
         }
         
@@ -115,33 +121,34 @@ public class PlayerBasicMovement : MonoBehaviour
         //The longer the jump button is pressed, the higher the jump.
         if (obj.canceled && _playerRb.velocity.y > 0)
         {
-            _playerRb.AddForce(Vector2.down * _playerRb.velocity.y * (1 - JumpCutMultiplier), ForceMode2D.Impulse);
+            _playerRb.AddForce(Vector2.down * _playerRb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
         }
         
         //Optional DoubleJump (WIP)
-        if (GameSettings.EnableDoubleJump && _secondJump && !GroundCheck && obj.performed)
+        if (gameSettings.enableDoubleJump && _secondJump && !groundCheck && obj.performed)
         {
-            _playerRb.AddForce(new Vector2(0, SecondJumpForce), ForceMode2D.Impulse);
+            //Debug.Log("I doublejumped");
+            _playerRb.AddForce(new Vector2(0, secondJumpForce), ForceMode2D.Impulse);
             _secondJump = false;
         }
-        GroundCheck = false;
+        groundCheck = false;
     }
     #endregion
 
     #region GroundCheck
-    public void groundCheck()
+    public void GroundCheck()
     {
         //One Overlap for each leg, so the player doesn't get stuck on ledges
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider1.position, 0.3f, GroundLayer);
-        Collider2D[] colliders2 = Physics2D.OverlapCircleAll(GroundCheckCollider2.position, 0.3f, GroundLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider1.position, 0.3f, groundLayer);
+        Collider2D[] colliders2 = Physics2D.OverlapCircleAll(groundCheckCollider2.position, 0.3f, groundLayer);
 
-        GroundCheck = false;
+        groundCheck = false;
         //Overlaps check for groundLayer in radius, to see if the palyer touches the ground
         if (colliders.Length > 0 || colliders2.Length > 0)
         {
-            GroundCheck = true;
+            groundCheck = true;
             _playerRb.gravityScale = normalGravityScale;
-            RunSpeed = runMaxSpeed;
+            runSpeed = runMaxSpeed;
             _secondJump = false;
         }
     }
