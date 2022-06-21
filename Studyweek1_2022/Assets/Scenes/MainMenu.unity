@@ -247,7 +247,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Michael Krysciak, Tim Sch\xFCtthut,Pascal Hermann, Miriam Jungbluth, Paulina
-    Rolbiecka"
+    Rolbiecka, Jo\xE3o Miguel Rodrigues Fiteiro"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.35
+  m_fontSize: 32.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1467,8 +1467,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsdata: {fileID: 0}
-  WallJumpToggle: {fileID: 0}
-  DoubleJumpToggle: {fileID: 0}
+  wallJumpToggle: {fileID: 0}
+  doubleJumpToggle: {fileID: 0}
   settings: {fileID: 0}
   mainMenu: {fileID: 0}
   credits: {fileID: 0}
@@ -5340,8 +5340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsdata: {fileID: 11400000, guid: 07651e17a516173408a458b1b477c147, type: 2}
-  WallJumpToggle: {fileID: 1988800669}
-  DoubleJumpToggle: {fileID: 985697185}
+  wallJumpToggle: {fileID: 0}
+  doubleJumpToggle: {fileID: 0}
   settings: {fileID: 833638122}
   mainMenu: {fileID: 438274108}
   credits: {fileID: 1463718135}
