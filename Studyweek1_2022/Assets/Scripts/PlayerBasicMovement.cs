@@ -17,8 +17,8 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 15f;
     private float runMaxSpeed = 40f;
     [SerializeField] private float jumpHorizontalSpeed = 9f;
-    [SerializeField] private float acceleration = 2f;
-    [SerializeField] private float deceleration = 3f;
+    [SerializeField] private float acceleration = 4f;
+    [SerializeField] private float deceleration = 7f;
     [SerializeField] private bool groundCheck = false;
     private bool _secondJump = false;
     [SerializeField] private float jumpCutMultiplier = 0.2f;
@@ -27,7 +27,7 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] Transform groundCheckCollider2;
     [SerializeField] Transform groundCheckCollider1;
-    [SerializeField] private float secondJumpForce = 80;
+    [SerializeField] private float secondJumpForce = 60;
 
     #endregion
 
