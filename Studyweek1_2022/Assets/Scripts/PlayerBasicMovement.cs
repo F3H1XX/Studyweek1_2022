@@ -22,9 +22,7 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private float deceleration = 7f;
     [SerializeField] private bool groundCheck = false;
     private bool _secondJump = false;
-
     [SerializeField] private float jumpCutMultiplier = 0.2f;
-
     //[SerializeField] private bool EnableDoubleJump = false;
     public SettingsData gameSettings;
     [SerializeField] private LayerMask groundLayer;
@@ -174,10 +172,6 @@ public class PlayerBasicMovement : MonoBehaviour
         _secondJump = true;
     }
 
-    // public IEnumerator DeathAnimationCooldownEnemy()
-    // {
-    //     yield return new WaitForSeconds(1.2f);
-    // }
     public void AnimatorStates()
     {
         if (!groundCheck)
@@ -196,14 +190,5 @@ public class PlayerBasicMovement : MonoBehaviour
             _animator.SetBool("IsWalking", true);
             _animator.SetBool("IsJumping", false);
         }
-    }
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.CompareTag("Enemy"))
-    //     {
-    //        _animator.SetBool("Die", true);
-    //        DeathAnimationCooldownEnemy();
-    //        collision.gameObject.SetActive(false);
-    //     }
-    // }
+    }  
 }

@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public class Collect_Coin : MonoBehaviour
 {       
-    public  UICoinCounter _UICoinCounter;
+    public UICoinCounter _UICoinCounter;
     [SerializeField] Text _CoinText;
-
 
     private void Awake()
     {
@@ -25,8 +24,7 @@ public class Collect_Coin : MonoBehaviour
             
             Debug.Log($"Coins: { _UICoinCounter.CoinCounter}");
 
-            _CoinText.text = _UICoinCounter.CoinCounter.ToString();
-            
+            _CoinText.text = _UICoinCounter.CoinCounter.ToString();          
         }
     }
 }
