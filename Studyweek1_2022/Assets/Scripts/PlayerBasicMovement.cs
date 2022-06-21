@@ -26,6 +26,7 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] Transform GroundCheckCollider2;
     [SerializeField] private LayerMask GroundLayer;
     public SettingsData GameSettings;
+    GameObject enemy;
 
     #endregion
 
@@ -64,10 +65,17 @@ public class PlayerBasicMovement : MonoBehaviour
     {
         groundCheck();
         #region MovementSpeed_Berechnung
-        Debug.Log(_playerRb.velocity.x);
-        /*Calculates velocity of player until max speed is reached.
-           Movement is more fluent */
+            
+        if(_groundMovement.ReadValue<float>() < 0)
+        {
+            transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
+        }
+        if(_groundMovement.ReadValue<float>() > 0)
+        {
+            transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
+        }
 
+  
         _moveInput = _groundMovement.ReadValue<float>();
 
         float targetSpeed = _moveInput * RunSpeed;
@@ -144,6 +152,10 @@ public class PlayerBasicMovement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         _secondJump = true;
     }
+ // public IEnumerator DeathAnimationCooldownEnemy()
+ // {
+ //     yield return new WaitForSeconds(1.2f);
+ // }
     public void AnimatorStates()
     {
         if (GroundCheck == false)
@@ -162,4 +174,13 @@ public class PlayerBasicMovement : MonoBehaviour
             _animator.SetBool("IsJumping", false);
          }
     }
+  // private void OnTriggerEnter2D(Collider2D collision)
+  // {
+  //     if (collision.CompareTag("Enemy"))
+  //     {
+  //        _animator.SetBool("Die", true);
+  //        DeathAnimationCooldownEnemy();
+  //        collision.gameObject.SetActive(false);
+  //     }
+  // }
 }
