@@ -45,7 +45,7 @@ public class PlayerBasicMovement : MonoBehaviour
     void Start()
     {
         _animator.enabled = true;
-        _animator.SetBool("IsWalking", true);
+       // _animator.SetBool("IsWalking", true);
     }
 
     private void OnEnable()
@@ -64,7 +64,7 @@ public class PlayerBasicMovement : MonoBehaviour
     {
         groundCheck();
         #region MovementSpeed_Berechnung
-
+        Debug.Log(_playerRb.velocity.x);
         /*Calculates velocity of player until max speed is reached.
            Movement is more fluent */
 
@@ -77,7 +77,7 @@ public class PlayerBasicMovement : MonoBehaviour
 
         _playerRb.AddForce(Vector2.right * movement);
         #endregion
-
+        AnimatorStates();
 
         #region GravityFallAdjustment
 
@@ -97,10 +97,9 @@ public class PlayerBasicMovement : MonoBehaviour
         //Groundcheck gets called to prevent infinite jumps.       
         if (GroundCheck && obj.performed)
         {
-
             GroundCheck = false;
             RunSpeed = JumpHorizontalSpeed;
-            _playerRb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+            _playerRb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);     
             StartCoroutine(StartCooldown());
         }
         
@@ -114,7 +113,6 @@ public class PlayerBasicMovement : MonoBehaviour
         //Optional DoubleJump (WIP)
         if (GameSettings.EnableDoubleJump && _secondJump && !GroundCheck && obj.performed)
         {
-            Debug.Log("I doublejumped");
             _playerRb.AddForce(new Vector2(0, SecondJumpForce), ForceMode2D.Impulse);
             _secondJump = false;
         }
@@ -145,5 +143,23 @@ public class PlayerBasicMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         _secondJump = true;
+    }
+    public void AnimatorStates()
+    {
+        if (GroundCheck == false)
+        {
+            _animator.SetBool("IsWalking", false);
+            _animator.SetBool("IsJumping", true);
+        }
+        else if (GroundCheck == true && _playerRb.velocity.x == 0 || _playerRb.velocity.x <= 2.04f && _playerRb.velocity.x >= -2.04f)
+         {
+            _animator.SetBool("IsWalking", false);
+            _animator.SetBool("IsJumping", false);
+         }
+         else if(GroundCheck == true && _playerRb.velocity.x != Mathf.Epsilon)
+         {
+            _animator.SetBool("IsWalking", true);
+            _animator.SetBool("IsJumping", false);
+         }
     }
 }
