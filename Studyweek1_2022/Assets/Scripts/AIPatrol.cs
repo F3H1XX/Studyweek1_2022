@@ -68,7 +68,6 @@ public class AIPatrol : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             gameObject.GetComponent<Collider2D>().enabled = false;
             groundCollider.GetComponent<Collider2D>().enabled = false;
-            Debug.Log("bounce");
             moveSpeed = 0f;
             transform.gameObject.tag = "Untagged";           
             body.SetActive(false);
