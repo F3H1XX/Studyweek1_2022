@@ -8,11 +8,10 @@ public class AIPatrol : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] int enemyScoreValue;
     [SerializeField] Rigidbody2D enemyRigidbody;
-    [SerializeField] BoxCollider2D groundDetectionCollider;
     [SerializeField] GameObject body;
-    [SerializeField] GameObject groundCollider;
     [SerializeField] float hitBounceForce;
     [SerializeField] Transform ObstacleDetector;
+    [SerializeField] Transform GroundDetection;
     [SerializeField] LayerMask obstacles;
     public UICoinCounter _UICoinCounter;
     [SerializeField] Text _CoinText;
@@ -50,11 +49,7 @@ public class AIPatrol : MonoBehaviour
     {
         return transform.localScale.x > Mathf.Epsilon; // Epsilon schaut nach einem sehr kleinen float Wert (0.000001f)
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //Dreht den Enemy
-        transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), transform.localScale.y);
-    }
+ 
     public IEnumerator DeathAnimationCooldownEnemy()
     { 
         yield return new WaitForSeconds(0.9f);
@@ -67,7 +62,6 @@ public class AIPatrol : MonoBehaviour
             collision.attachedRigidbody.AddForce(new Vector2(0, hitBounceForce), ForceMode2D.Impulse);
             GetComponent<Collider2D>().enabled = false;
             gameObject.GetComponent<Collider2D>().enabled = false;
-            groundCollider.GetComponent<Collider2D>().enabled = false;
             moveSpeed = 0f;
             transform.gameObject.tag = "Untagged";           
             body.SetActive(false);
@@ -81,8 +75,13 @@ public class AIPatrol : MonoBehaviour
     private void ObstacleCheck()
     {
         Collider2D[] Obstacles = Physics2D.OverlapCircleAll(ObstacleDetector.position, 0.3f, obstacles);
+        Collider2D[] Ground = Physics2D.OverlapCircleAll(GroundDetection.position, 0.3f);
 
         if(Obstacles.Length != 0)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), transform.localScale.y);
+        }
+        if(Ground.Length == 0)
         {
             transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), transform.localScale.y);
         }

@@ -11,24 +11,25 @@ public class PlayerBasicMovement : MonoBehaviour
     private PlayerMovement_Controls _playerControls;
     private InputAction _groundMovement;
     private Rigidbody2D _playerRb;
-    [SerializeField] private float jumpForce = 40;
-    private float normalGravityScale = 1.75f;
-    [SerializeField] private float fallingGravityScale = 0.4f;
+    [SerializeField] private float jumpForce = 40;  
     private float _moveInput;
     [SerializeField] private float runSpeed = 15f;
     private float runMaxSpeed = 40f;
     [SerializeField] private float jumpHorizontalSpeed = 9f;
     [SerializeField] private float acceleration = 4f;
     [SerializeField] private float deceleration = 7f;
+    [SerializeField] private float defaultGravity = 10f;
     [SerializeField] private bool groundCheck = false;
+    [SerializeField] private bool clingCheck = false;
     private bool _secondJump = false;
-    [SerializeField] private float jumpCutMultiplier = 0.2f;
-    //[SerializeField] private bool EnableDoubleJump = false;
+    [SerializeField] private float jumpCutMultiplier = 0.2f;   
     public SettingsData gameSettings;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] Transform groundCheckCollider2;
     [SerializeField] Transform groundCheckCollider1;
+    [SerializeField] private Transform WallClingCheck;
     [SerializeField] private float secondJumpForce = 60;
+    Collider2D[] walls;
+
 
     #endregion
 
@@ -42,7 +43,7 @@ public class PlayerBasicMovement : MonoBehaviour
 
         _groundMovement = _playerControls.Player.GroundMovement;
 
-        _animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();      
     }
 
     void Start()
@@ -74,18 +75,18 @@ public class PlayerBasicMovement : MonoBehaviour
 
         #region MovementSpeed_Berechnung
 
-        if (_groundMovement.ReadValue<float>() < 0)
+        if (_playerRb.velocity.x < 0)
         {
-            transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
+            transform.localScale = new Vector2(-1f, 1);
         }
 
-        if (_groundMovement.ReadValue<float>() > 0)
+        if (_playerRb.velocity.x > 0)
         {
-            transform.localScale = new Vector2((Mathf.Sign(_playerRb.velocity.x)), transform.localScale.y);
+            transform.localScale = Vector2.one;         
         }
-
-
+               
         _moveInput = _groundMovement.ReadValue<float>();
+        
 
         float targetSpeed = _moveInput * runSpeed;
         float speedDiff = targetSpeed - _playerRb.velocity.x;
@@ -98,15 +99,35 @@ public class PlayerBasicMovement : MonoBehaviour
 
         AnimatorStates();
 
-        #region GravityFallAdjustment
+        #region WallJump
 
-        //Gravity scales up to make falling more "realistic".
-        //Groundcheck gets updated
-        if (_playerRb.velocity.y < 0.1f || _playerRb.velocity.y != 0)
+         walls = Physics2D.OverlapCircleAll(WallClingCheck.position, 0.1f, groundLayer);
+
+        if(walls.Length != 0 && groundCheck == false)
         {
-            _playerRb.gravityScale += fallingGravityScale;
+            if((transform.localScale.x == 1f && _groundMovement.ReadValue<float>() != 0) || (transform.localScale.x == -1f && _groundMovement.ReadValue<float>() != 0))
+            {
+                clingCheck = true;
+            }
+            else
+            {
+                StartCoroutine(ClingCooldown());
+            }
+        }
+        else
+        {
+            StartCoroutine(ClingCooldown());       
         }
 
+        if(clingCheck)
+        {
+            _playerRb.gravityScale = 0;
+            _playerRb.velocity = Vector2.zero;
+        }
+        else if(!clingCheck)
+        {
+            _playerRb.gravityScale = defaultGravity;
+        }
         #endregion
     }
 
@@ -132,11 +153,19 @@ public class PlayerBasicMovement : MonoBehaviour
         }
 
         //Optional DoubleJump (WIP)
-        if (gameSettings.enableDoubleJump && _secondJump && !groundCheck && obj.performed)
+        if (gameSettings.enableDoubleJump && _secondJump && !groundCheck && obj.performed && !clingCheck)
         {
             _playerRb.AddForce(new Vector2(0, secondJumpForce), ForceMode2D.Impulse);
             _playerJumpSound.Play();
             _secondJump = false;
+        }
+
+        if(clingCheck && obj.performed && walls.Length == 0)
+        {
+            _playerRb.AddForce(new Vector2(0, secondJumpForce), ForceMode2D.Impulse);
+            _playerJumpSound.Play();
+            clingCheck = false;
+            StartCoroutine(ClingCooldown());
         }
         groundCheck = false;
     }
@@ -147,16 +176,13 @@ public class PlayerBasicMovement : MonoBehaviour
 
     public void GroundCheck()
     {
-        //One Overlap for each leg, so the player doesn't get stuck on ledges
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider1.position, 0.3f, groundLayer);
-        Collider2D[] colliders2 = Physics2D.OverlapCircleAll(groundCheckCollider2.position, 0.3f, groundLayer);
-
+   
         groundCheck = false;
         //Overlaps check for groundLayer in radius, to see if the palyer touches the ground
-        if (colliders.Length > 0 || colliders2.Length > 0)
+        if (colliders.Length > 0)
         {
             groundCheck = true;
-            _playerRb.gravityScale = normalGravityScale;
             runSpeed = runMaxSpeed;
             _secondJump = false;
         }
@@ -169,6 +195,12 @@ public class PlayerBasicMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         _secondJump = true;
+    }
+
+    public IEnumerator ClingCooldown()
+    {
+        yield return new WaitForSeconds(0.2f);
+        clingCheck = false;
     }
 
     public void AnimatorStates()
