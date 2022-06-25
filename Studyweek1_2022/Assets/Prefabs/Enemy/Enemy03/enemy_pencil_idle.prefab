@@ -158,7 +158,7 @@ MonoBehaviour:
   enemyRigidbody: {fileID: 5726403358858662327}
   groundDetectionCollider: {fileID: 5781471052266924381}
   body: {fileID: 9179124150093101626}
-  hitBounceForce: 100
+  hitBounceForce: 90
   ObstacleDetector: {fileID: 8572371582358804205}
   obstacles:
     serializedVersion: 2

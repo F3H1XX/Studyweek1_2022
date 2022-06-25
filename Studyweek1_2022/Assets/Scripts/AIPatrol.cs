@@ -59,8 +59,10 @@ public class AIPatrol : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            gameObject.GetComponent<Collider2D>().enabled = false;
             collision.attachedRigidbody.AddForce(new Vector2(0, hitBounceForce), ForceMode2D.Impulse);
+            GetComponent<Collider2D>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;          
+            Debug.Log("bounce");
             moveSpeed = 0f;
             transform.gameObject.tag = "Untagged";           
             body.SetActive(false);
