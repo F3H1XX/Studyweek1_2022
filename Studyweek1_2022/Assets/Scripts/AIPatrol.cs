@@ -59,10 +59,10 @@ public class AIPatrol : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            gameObject.GetComponent<Collider2D>().enabled = false;
             collision.attachedRigidbody.AddForce(new Vector2(0, hitBounceForce), ForceMode2D.Impulse);
             moveSpeed = 0f;
-            transform.gameObject.tag = "Untagged";
-            gameObject.GetComponent<Collider2D>().enabled = false;
+            transform.gameObject.tag = "Untagged";           
             body.SetActive(false);
             _animator.SetBool("Die", true);
             StartCoroutine("DeathAnimationCooldownEnemy");

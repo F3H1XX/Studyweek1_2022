@@ -134,12 +134,10 @@ public class PlayerBasicMovement : MonoBehaviour
         //Optional DoubleJump (WIP)
         if (gameSettings.enableDoubleJump && _secondJump && !groundCheck && obj.performed)
         {
-            //Debug.Log("I doublejumped");
             _playerRb.AddForce(new Vector2(0, secondJumpForce), ForceMode2D.Impulse);
             _playerJumpSound.Play();
             _secondJump = false;
         }
-
         groundCheck = false;
     }
 
