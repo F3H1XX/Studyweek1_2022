@@ -2889,6 +2889,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 863845519673936555, guid: ff1d5a26ef21663479808facc1557c71, type: 3}
+      propertyPath: _CoinText
+      value: 
+      objectReference: {fileID: 968344236}
     - target: {fileID: 2282015026281607777, guid: ff1d5a26ef21663479808facc1557c71, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4303,6 +4307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_mouse_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 863845519673936555, guid: f6474ad48766e474d97f2c2c9dc531ab, type: 3}
+      propertyPath: _CoinText
+      value: 
+      objectReference: {fileID: 968344236}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6474ad48766e474d97f2c2c9dc531ab, type: 3}
 --- !u!1 &349074519
@@ -5971,6 +5979,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_usb_stick_idle_0
       objectReference: {fileID: 0}
+    - target: {fileID: 863845519673936555, guid: ff1d5a26ef21663479808facc1557c71, type: 3}
+      propertyPath: _CoinText
+      value: 
+      objectReference: {fileID: 968344236}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff1d5a26ef21663479808facc1557c71, type: 3}
 --- !u!1 &578308239
@@ -17193,6 +17205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_usb_stick_idle_0 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 863845519673936555, guid: ff1d5a26ef21663479808facc1557c71, type: 3}
+      propertyPath: _CoinText
+      value: 
+      objectReference: {fileID: 968344236}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff1d5a26ef21663479808facc1557c71, type: 3}
 --- !u!1 &1994439635
@@ -18190,6 +18206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_pencil_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 863845519673936555, guid: 8b6fe3f130f64e740aec772384744c5a, type: 3}
+      propertyPath: _CoinText
+      value: 
+      objectReference: {fileID: 968344236}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b6fe3f130f64e740aec772384744c5a, type: 3}
 --- !u!4 &2137179816 stripped

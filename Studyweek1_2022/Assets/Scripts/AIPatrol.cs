@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AIPatrol : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
+    [SerializeField] int enemyScoreValue;
     [SerializeField] Rigidbody2D enemyRigidbody;
     [SerializeField] BoxCollider2D groundDetectionCollider;
     [SerializeField] GameObject body;
+    [SerializeField] GameObject groundCollider;
     [SerializeField] float hitBounceForce;
     [SerializeField] Transform ObstacleDetector;
     [SerializeField] LayerMask obstacles;
-    
+    public UICoinCounter _UICoinCounter;
+    [SerializeField] Text _CoinText;
+
     Animator _animator;
     
 	
@@ -61,13 +66,16 @@ public class AIPatrol : MonoBehaviour
         {
             collision.attachedRigidbody.AddForce(new Vector2(0, hitBounceForce), ForceMode2D.Impulse);
             GetComponent<Collider2D>().enabled = false;
-            gameObject.GetComponent<Collider2D>().enabled = false;          
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            groundCollider.GetComponent<Collider2D>().enabled = false;
             Debug.Log("bounce");
             moveSpeed = 0f;
             transform.gameObject.tag = "Untagged";           
             body.SetActive(false);
             _animator.SetBool("Die", true);
             StartCoroutine("DeathAnimationCooldownEnemy");
+            _UICoinCounter.CoinCounter += enemyScoreValue;
+            _CoinText.text = _UICoinCounter.CoinCounter.ToString();
         }
     }
        

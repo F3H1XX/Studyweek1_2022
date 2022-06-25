@@ -155,14 +155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.98
+  enemyScoreValue: 3
   enemyRigidbody: {fileID: 5726403358858662327}
   groundDetectionCollider: {fileID: 5781471052266924381}
   body: {fileID: 9179124150093101626}
+  groundCollider: {fileID: 6462092951547261065}
   hitBounceForce: 90
   ObstacleDetector: {fileID: 8572371582358804205}
   obstacles:
     serializedVersion: 2
     m_Bits: 128
+  _UICoinCounter: {fileID: 11400000, guid: 84a205d6e25d4c44fa1566e59b4ef2a0, type: 2}
+  _CoinText: {fileID: 0}
 --- !u!50 &5726403358858662327
 Rigidbody2D:
   serializedVersion: 4
