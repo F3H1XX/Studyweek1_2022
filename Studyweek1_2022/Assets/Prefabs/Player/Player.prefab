@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142349866106486717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -4.8, z: 0}
+  m_LocalPosition: {x: 0.15, y: -4.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -140,21 +140,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbb2f79340c3ba48864f9109732cb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 40
+  jumpForce: 35
   runSpeed: 15
   jumpHorizontalSpeed: 9
   acceleration: 4
   deceleration: 7
+  defaultGravity: 10
   groundCheck: 0
   clingCheck: 0
+  coyoteTimeRunning: 0
   jumpCutMultiplier: 0.2
+  coyoteTime: 0.5
   gameSettings: {fileID: 11400000, guid: 07651e17a516173408a458b1b477c147, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
   groundCheckCollider1: {fileID: 2142349866106486706}
   WallClingCheck: {fileID: 5931984309874672843}
-  secondJumpForce: 80
+  secondJumpForce: 0
 --- !u!50 &2142349866810609996
 Rigidbody2D:
   serializedVersion: 4
@@ -262,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7146715619764782909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.55, y: 0.5, z: -0.082343236}
+  m_LocalPosition: {x: 1.55, y: 0.08, z: -0.082343236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
