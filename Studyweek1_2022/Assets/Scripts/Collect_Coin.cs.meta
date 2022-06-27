@@ -3,7 +3,8 @@ guid: 17fe0830f9a014643beddfe241f78c7e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _UICoinCounter: {fileID: 11400000, guid: 84a205d6e25d4c44fa1566e59b4ef2a0, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

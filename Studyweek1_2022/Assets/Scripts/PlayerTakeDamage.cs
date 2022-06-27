@@ -11,7 +11,7 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("GameScene");
         }   
     }
 

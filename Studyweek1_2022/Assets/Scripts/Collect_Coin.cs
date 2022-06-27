@@ -5,18 +5,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Collect_Coin : MonoBehaviour
-{
-    
-    public Text CoinCountText;
-    public  UICoinCounter _UICoinCounter;
-    
+{       
+    public UICoinCounter _UICoinCounter;
+    [SerializeField] Text _CoinText;
 
     private void Awake()
     {
-        CoinCountText = GetComponent<Text>();
-        
+        _UICoinCounter.CoinCounter = 0;
+        _CoinText.text = _UICoinCounter.CoinCounter.ToString();
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Coin"))
@@ -26,13 +23,8 @@ public class Collect_Coin : MonoBehaviour
            // StartCoroutine(CoinCooldown());
             
             Debug.Log($"Coins: { _UICoinCounter.CoinCounter}");
-            
+
+            _CoinText.text = _UICoinCounter.CoinCounter.ToString();          
         }
     }
-
-   /* public IEnumerator CoinCooldown()
-    {
-        _UICoinCounter.CoinCounter++;
-        yield return new WaitForSeconds(0.1f);
-    } */
 }

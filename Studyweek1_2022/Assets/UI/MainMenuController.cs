@@ -3,56 +3,56 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
-{   /// <summary>
+{
+    /// <summary>
     /// creates variables and Methods to enable MenuButton functionality
     /// </summary>
-    [SerializeField]
-    private SettingsData settingsdata;
-    [SerializeField]
-    private Toggle WallJumpToggle;
-    [SerializeField]
-    private Toggle DoubleJumpToggle;
-    [SerializeField]
-    private GameObject settings;
-    [SerializeField]
-    private GameObject mainMenu;
-    [SerializeField] 
-    private GameObject credits;
-    [SerializeField] 
-    private GameObject gameMenu;
-    public void SetWallJumpValue()  
+    [SerializeField] private SettingsData settingsdata;
+
+    [SerializeField] private Toggle wallJumpToggle;
+    [SerializeField] private Toggle doubleJumpToggle;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject gameMenu;
+
+    public void SetWallJumpValue()
     {
-        settingsdata.EnableWallJump = WallJumpToggle.isOn;
+        settingsdata.enableWallJump = wallJumpToggle.isOn;
     }
-    public void SetDoubleJumpValue()    
+
+    public void SetDoubleJumpValue()
     {
-        settingsdata.EnableDoubleJump = DoubleJumpToggle.isOn;
+        settingsdata.enableDoubleJump = doubleJumpToggle.isOn;
     }
-    public void MainMenu()  
+
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
+
     public void PlayGame()
     {
-        Debug.Log("A");
-        //SceneManager.LoadScene("GameScene");
-        //SceneManager.UnloadSceneAsync("MainMenu");
         SceneManager.LoadScene("GameScene");
     }
-    public void Settings()  
+
+    public void Settings()
     {
         settings.SetActive(true);
         mainMenu.SetActive(false);
     }
-    public void Highscore() 
+
+    public void Highscore() //added for Later implementation
     {
     }
-    public void Credits()   
+
+    public void Credits()
     {
         credits.SetActive(true);
         mainMenu.SetActive(false);
     }
-    public void ExitGame()  
+
+    public void ExitGame()
     {
         Application.Quit();
     }
@@ -61,5 +61,15 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync("GameScene");
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
