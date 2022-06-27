@@ -68,6 +68,7 @@ RectTransform:
   m_Children:
   - {fileID: 2142349866106486706}
   - {fileID: 5931984309874672843}
+  - {fileID: 6220221915682929783}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -149,6 +150,8 @@ MonoBehaviour:
   groundCheck: 0
   clingCheck: 0
   coyoteTimeRunning: 0
+  bufferActive: 0
+  saveJump: 0
   jumpCutMultiplier: 0.2
   coyoteTime: 0.5
   gameSettings: {fileID: 11400000, guid: 07651e17a516173408a458b1b477c147, type: 2}
@@ -160,6 +163,7 @@ MonoBehaviour:
     m_Bits: 512
   groundCheckCollider1: {fileID: 2142349866106486706}
   WallClingCheck: {fileID: 5931984309874672843}
+  JumpBufferCheck: {fileID: 6220221915682929783}
   secondJumpForce: 0
 --- !u!50 &2142349866810609996
 Rigidbody2D:
@@ -244,6 +248,37 @@ CapsuleCollider2D:
   m_Offset: {x: 0.11258149, y: 0.11543369}
   m_Size: {x: 2.9133925, y: 9.558804}
   m_Direction: 0
+--- !u!1 &3304797572747264078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6220221915682929783}
+  m_Layer: 0
+  m_Name: JumpBufferCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6220221915682929783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304797572747264078}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.19, y: -6.06, z: -0.036087174}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3451858898525003097}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7146715619764782909
 GameObject:
   m_ObjectHideFlags: 0

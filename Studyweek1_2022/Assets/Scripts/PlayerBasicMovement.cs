@@ -22,6 +22,8 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private bool groundCheck = false;
     [SerializeField] private bool clingCheck = false;
     [SerializeField] private bool coyoteTimeRunning = false;
+    [SerializeField]private bool bufferActive = false;
+    [SerializeField] private bool saveJump = false;
     private bool _secondJump = false;
     [SerializeField] private float jumpCutMultiplier = 0.2f;
     [SerializeField] private float coyoteTime = 0.5f;
@@ -31,8 +33,10 @@ public class PlayerBasicMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] Transform groundCheckCollider1;
     [SerializeField] private Transform WallClingCheck;
+    [SerializeField] private Transform JumpBufferCheck;
     [SerializeField] private float secondJumpForce = 0;
     Collider2D[] walls;
+    
 
     #endregion
 
@@ -75,6 +79,8 @@ public class PlayerBasicMovement : MonoBehaviour
     private void FixedUpdate()
     {
         GroundCheck();
+
+
        
 
         #region MovementSpeed_Berechnung
@@ -101,6 +107,16 @@ public class PlayerBasicMovement : MonoBehaviour
 
         #endregion
 
+        Collider2D[] jumpBufferColliders = new Collider2D[20];
+        jumpBufferColliders = Physics2D.OverlapCircleAll(JumpBufferCheck.position, 0.5f, groundLayer);
+
+        if (jumpBufferColliders.Length != 0 && !groundCheck)
+            bufferActive = true;
+        if (jumpBufferColliders.Length == 0)
+            bufferActive = false;
+
+
+
         AnimatorStates();
 
         #region WallCling
@@ -115,12 +131,12 @@ public class PlayerBasicMovement : MonoBehaviour
             }
             else
             {
-                StartCoroutine(ClingCooldown());
+                StartCoroutine(BoolSetCooldown(clingCheck));
             }
         }
         else
         {
-            StartCoroutine(ClingCooldown());
+            StartCoroutine(BoolSetCooldown(clingCheck));
         }
 
         if (clingCheck)
@@ -133,6 +149,23 @@ public class PlayerBasicMovement : MonoBehaviour
             _playerRb.gravityScale = defaultGravity;
         }
 
+        if(groundCheck && saveJump)
+        {
+            Debug.Log("Bung");
+            _playerRb.velocity = Vector2.zero;
+            _playerRb.AddForce(new Vector2(0, jumpForce ), ForceMode2D.Impulse);
+            runSpeed = jumpHorizontalSpeed;
+            groundCheck = false;
+            saveJump = false;
+            _coyoteTimeCounter = 0;
+            _playerJumpSound.Play();
+
+            StartCoroutine(DoubleJumpCooldown());
+        }
+        
+
+       
+        
         #endregion
     }
 
@@ -141,7 +174,11 @@ public class PlayerBasicMovement : MonoBehaviour
     private void PlayerJump(InputAction.CallbackContext obj)
     {
 
-        
+
+        if (bufferActive && !groundCheck && obj.performed)
+        {
+            saveJump = true;
+        }
         //Ground-check gets called to prevent infinite jumps.       
         if (groundCheck && obj.performed)
         {
@@ -149,11 +186,12 @@ public class PlayerBasicMovement : MonoBehaviour
             _playerRb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             runSpeed = jumpHorizontalSpeed;
             groundCheck = false;
+            saveJump = false;
             _coyoteTimeCounter = 0;
             _playerJumpSound.Play();
 
             StartCoroutine(DoubleJumpCooldown());
-        }
+        }  
 
         if(coyoteTimeRunning)
         {
@@ -189,9 +227,8 @@ public class PlayerBasicMovement : MonoBehaviour
             _playerJumpSound.Play();
             clingCheck = false;
             runSpeed = runMaxSpeed;
-            StartCoroutine(ClingCooldown());
+            StartCoroutine(BoolSetCooldown(clingCheck));
         }
-
         groundCheck = false;
     }
 
@@ -207,8 +244,10 @@ public class PlayerBasicMovement : MonoBehaviour
         if (colliders.Length > 0)
         {          
             runSpeed = runMaxSpeed;
-            _secondJump = false;          
+            _secondJump = false;
             groundCheck = true;
+            
+
           
             _coyoteTimeCounter = coyoteTime;
             
@@ -244,10 +283,10 @@ public class PlayerBasicMovement : MonoBehaviour
 
     }
 
-    public IEnumerator ClingCooldown()
+    public IEnumerator BoolSetCooldown(bool value)
     {
         yield return new WaitForSeconds(0.2f);
-        clingCheck = false;
+        value = false;
     }
 
     private void AnimatorStates()
